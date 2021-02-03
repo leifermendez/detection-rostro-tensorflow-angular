@@ -1,0 +1,53 @@
+<div class="wrapper">
+  <div class="header">
+    <div class="in-header">
+      <div>
+        <i class="uil uil-video"></i>
+      </div>
+      <div class="title">
+        Reconocimiento facial
+      </div>
+    </div>
+    <div>
+      <a href="https://github.com/leifermendez" target="_blank" class="link-github">
+        <i class="uil uil-github"></i>
+      </a>
+    </div>
+  </div>
+  <div class="block-main">
+
+    <div class="cam">
+      <app-video-player
+        (dataAI)="getAI($event)"
+        [width]="dimensionVideo.width"
+                        [height]="dimensionVideo.height"
+                        [source]="currentStream"></app-video-player>
+    </div>
+
+    <div class="sidebar">
+      <div class="zone-body">
+        <div class="block">
+          <b>Estado de ánimo</b>
+          <div class="block-expression">
+            <div *ngFor="let exp of listExpressions">
+              <span>{{exp.name}}: </span><i class="value-number">{{exp.value | number}}</i>
+            </div>
+          </div>
+        </div>
+        <div class="block">
+          <b>Puntos de referencia</b>
+          <div class="space-preview"></div>
+        </div>
+      </div>
+      <div class="zone-btn">
+        <ul class="list-btn">
+          <li *ngFor="let btn of buttons">
+            <i class="{{btn.icon}}"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+<!--  <app-video-player [source]="currentStream"></app-video-player>-->
+</div>

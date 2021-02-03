@@ -1,0 +1,30 @@
+<div *ngIf="loadedModels">
+  <div *ngIf="overlay" [style.width]="width+'px'" [style.height]="height+'px'" class="overlay-cam"></div>
+  <video [width]="width" [height]="height"
+         [style.width]="width+'px'"
+         [style.height]="height+'px'"
+         [style.borderColor]="currentColor" #videoElement (play)="listenerPlay()"
+         (loadedmetadata)="loadedMetaData()" [srcObject]="source"></video>
+</div>
+
+<div class="btn-filter">
+  <button (click)="overlay = !overlay">
+    <i class="uil uil-circle"></i>
+  </button>
+  <button (click)="selectFilter('question')">
+    <i class="uil uil-map-marker-question"></i>
+  </button>
+  <button  (click)="selectFilter('filter')">
+    <i class="uil uil-nerd"></i>
+  </button>
+</div>
+
+<!---- *********** FILTERS *************** --->
+<div class="filters" *ngFor="let filter of filters">
+  <div class="filter-eye filter-question" *ngIf="filter?.type === 'question' && filterSelect === 'question'">
+    <span [innerHTML]="filter?.question"></span>
+  </div>
+  <div class="filter-eye filter-image" *ngIf="filter?.type === 'filter'  && filterSelect === 'filter'">
+    <img src="../../assets/filters/{{filter.image}}" alt="">
+  </div>
+</div>
